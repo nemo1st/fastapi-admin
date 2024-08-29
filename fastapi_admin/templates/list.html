@@ -116,7 +116,7 @@
                         {% if model_resource.bulk_actions %}
                             <td>
                                 <input
-                                        data-id="{{ value[0]|int }}"
+                                        data-id="{{ value[0] }}"
                                         class="form-check-input m-0 align-middle checkbox-select-item"
                                         type="checkbox"
                                 />
@@ -209,7 +209,16 @@
         </div>
     </div>
     <script>
+        function confirmAction(method) {
+            if (method === "DELETE") {
+                return confirm("{{ _('delete_confirmation') }}");
+            }
+            return true;
+        }
         function onAction(url, method) {
+            if(!confirmAction(method)) {
+                return
+            }
             $.ajax({
                 url: url,
                 method: method,
@@ -220,6 +229,9 @@
         }
 
         function onBulkAction(url, method) {
+            if(!confirmAction(method)) {
+                return
+            }
             let ids = $('.checkbox-select-item:checked').map(function () {
                 return $(this).attr('data-id')
             }).get();
