@@ -1,6 +1,6 @@
 from typing import Dict, List, Optional, Type
 
-import redis.asyncio as redis
+import redis.asyncio.client as redis
 from fastapi import FastAPI
 from pydantic import HttpUrl
 from starlette.middleware.base import BaseHTTPMiddleware
