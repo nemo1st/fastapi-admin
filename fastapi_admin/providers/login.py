@@ -2,7 +2,7 @@ import typing
 import uuid
 from typing import Type
 
-import redis.asyncio as redis
+import redis.asyncio.client as redis
 from fastapi import Depends, Form
 from starlette.middleware.base import BaseHTTPMiddleware, RequestResponseEndpoint
 from starlette.requests import Request
